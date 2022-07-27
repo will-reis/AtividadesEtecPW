@@ -1,0 +1,27 @@
+<?php
+	$cod = $_GET["cod"];
+
+	$servidor = "localhost";
+	$usuario = "root";
+	$senha = "";
+	$banco = "Aula7";
+
+	$conn = new mysqli($servidor, $usuario, $senha, $banco);
+
+	if ($conn->connect_error) {
+	    die("Erro de conexão: " . $conn->connect_error);
+	} 
+			$sql = "DELETE FROM clientes WHERE cod='$cod' ";
+
+			if (mysqli_query($conn, $sql)) {
+				echo "<br> Data deleted successfully";
+			
+			} else {
+				echo "Error deleting record: " . mysqli_error($conn);
+			
+			}
+
+		mysqli_close($conn);
+
+	header("location: index.php");
+?>
